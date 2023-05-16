@@ -12,6 +12,7 @@ import java.util.List;
 @RequestMapping("/api/bike-trips")
 public class BikeTripController {
 
+    //TODO: Implement rest of the CRUD (Create, retrieve, update, delete)(
     private final BikeTripCollectionRepository bikeRepo;
 
     public BikeTripController(BikeTripCollectionRepository bikeRepo){
