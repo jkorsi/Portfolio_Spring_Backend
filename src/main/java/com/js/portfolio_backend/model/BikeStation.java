@@ -1,12 +1,12 @@
 package com.js.portfolio_backend.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.io.Serializable;
 
 @Entity
 @Table(name="bike_stations")
+@IdClass(BikeStationCompositeId.class)
 public class BikeStation {
 
   @Id

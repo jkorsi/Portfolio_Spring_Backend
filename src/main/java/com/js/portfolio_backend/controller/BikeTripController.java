@@ -22,5 +22,4 @@ public class BikeTripController {
     public List<BikeTrip> getBikeTripList() {
         return bikeRepo.getBikeTripList();
     }
-
 }
