@@ -8,7 +8,7 @@ Backend for Portfolio, created using Java Spring Boot, with Web template.
 - Models
 
 ## Controller classes 
-- will handle the incoming HTTP requests, and process and validate them, and send appropriate responses.
+- Will handle the incoming HTTP requests, and process and validate them, and send appropriate responses.
 - Will extract the data to populate model classes
 
 ## Service classes
