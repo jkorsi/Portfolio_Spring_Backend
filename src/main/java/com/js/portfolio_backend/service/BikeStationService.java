@@ -25,6 +25,10 @@ public class BikeStationService {
         this.stationRepository = stationRepository;
     }
 
+    public List<BikeStation> getAll(){
+        return stationRepository.findAll();
+    }
+
     public void importStationCSV(MultipartFile file) throws IOException {
 
         Reader reader = new BufferedReader(new InputStreamReader(new BOMInputStream(file.getInputStream()), "UTF-8"));
