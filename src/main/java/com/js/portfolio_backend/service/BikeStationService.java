@@ -10,6 +10,7 @@ import org.apache.commons.io.input.BOMInputStream;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.data.domain.Sort;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,6 +28,10 @@ public class BikeStationService {
 
     public List<BikeStation> getAll(){
         return stationRepository.findAll();
+    }
+
+    public List<BikeStation> getAll(Sort sort){
+        return stationRepository.findAll(sort);
     }
 
     public void importStationCSV(MultipartFile file) throws IOException {
