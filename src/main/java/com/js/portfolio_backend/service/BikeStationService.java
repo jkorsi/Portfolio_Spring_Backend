@@ -8,9 +8,12 @@ import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.io.input.BOMInputStream;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Page;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -30,8 +33,9 @@ public class BikeStationService {
         return stationRepository.findAll();
     }
 
-    public List<BikeStation> getAll(Sort sort){
-        return stationRepository.findAll(sort);
+    public Page<BikeStation> getAll(Sort sort, Pageable pageable) {
+        pageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), sort);
+        return stationRepository.findAll(pageable);
     }
 
     public void importStationCSV(MultipartFile file) throws IOException {

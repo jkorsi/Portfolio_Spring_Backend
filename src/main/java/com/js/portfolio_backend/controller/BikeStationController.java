@@ -1,5 +1,6 @@
 package com.js.portfolio_backend.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.js.portfolio_backend.model.BikeStation;
 import com.js.portfolio_backend.service.BikeStationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,39 +10,44 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.data.domain.Sort;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import java.io.IOException;
 import java.util.List;
 
 @RestController
 @RequestMapping("api/stations")
 public class BikeStationController {
-
-
+    private ObjectMapper objectMapper;
     private BikeStationService bikeStationService;
 
     @Autowired
-    public void BikeStationController(BikeStationService bikeStationService) {
+    public void BikeStationController(BikeStationService bikeStationService, ObjectMapper objectMapper) {
         this.bikeStationService = bikeStationService;
+        this.objectMapper = objectMapper;
     }
 
-    @GetMapping("")
+    @GetMapping("/")
     @CrossOrigin(origins = "http://localhost:5173")
-    public List<BikeStation> getAll(){
-        List<BikeStation> bikeStations = bikeStationService.getAll();
-        return bikeStations;
-    }
+    public Page<BikeStation> getByOrder(
+            @RequestParam(defaultValue = "stationName") String orderBy,
+            @RequestParam(defaultValue = "asc") String orderDir,
+            @PageableDefault(size = 10) Pageable pageable) {
 
-    @GetMapping("/sortBy/")
-    public List<BikeStation> getByOrder(@RequestParam() String orderBy, @RequestParam(defaultValue = "asc") String orderDir){
         Sort.Direction direction = Sort.Direction.ASC;
         if (orderDir.equalsIgnoreCase("desc")) {
             direction = Sort.Direction.DESC;
         }
 
         Sort sort = Sort.by(direction, orderBy);
-        List<BikeStation> bikeStations = bikeStationService.getAll(sort);
+        Page<BikeStation> bikeStationPage = bikeStationService.getAll(sort, pageable);
 
-        return bikeStations;
+        return bikeStationPage;
     }
 
     @PostMapping("/upload")
