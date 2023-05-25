@@ -38,6 +38,12 @@ public class BikeStationService {
         return stationRepository.findAll(pageable);
     }
 
+    public Page<BikeStation> search(String keyword, Sort sort, Pageable pageable) {
+        String lowerKeyword = keyword.toLowerCase();
+        pageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), sort);
+        return stationRepository.search(lowerKeyword, pageable);
+    }
+
     public void importStationCSV(MultipartFile file) throws IOException {
 
         Reader reader = new BufferedReader(new InputStreamReader(new BOMInputStream(file.getInputStream()), "UTF-8"));

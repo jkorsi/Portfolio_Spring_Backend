@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
-import java.util.List;
 
 @RestController
 @RequestMapping("api/stations")
@@ -46,6 +45,24 @@ public class BikeStationController {
 
         Sort sort = Sort.by(direction, orderBy);
         Page<BikeStation> bikeStationPage = bikeStationService.getAll(sort, pageable);
+
+        return bikeStationPage;
+    }
+
+    @GetMapping("/search")
+    @CrossOrigin(origins = "http://localhost:5173")
+    public Page<BikeStation> searchByKeyword(@RequestParam("keyword") String keyword,
+                                             @RequestParam(defaultValue = "stationName") String orderBy,
+                                             @RequestParam(defaultValue = "asc") String orderDir,
+                                             @PageableDefault(size = 10) Pageable pageable) {
+
+        Sort.Direction direction = Sort.Direction.ASC;
+        if (orderDir.equalsIgnoreCase("desc")) {
+            direction = Sort.Direction.DESC;
+        }
+
+        Sort sort = Sort.by(direction, orderBy);
+        Page<BikeStation> bikeStationPage = bikeStationService.search(keyword, sort, pageable);
 
         return bikeStationPage;
     }
