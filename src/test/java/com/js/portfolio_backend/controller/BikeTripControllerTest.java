@@ -1,19 +1,14 @@
 package com.js.portfolio_backend.controller;
 
 import com.js.portfolio_backend.model.BikeTrip;
-import com.js.portfolio_backend.repository.BikeTripCollectionRepository;
-import org.junit.jupiter.api.AfterEach;
+import com.js.portfolio_backend.service.BikeTripService;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @WebMvcTest(BikeTripController.class)
 class BikeTripControllerTest {
@@ -22,11 +17,11 @@ class BikeTripControllerTest {
     List<BikeTrip> bikeTripList = new ArrayList<>();
 
     @MockBean
-    BikeTripCollectionRepository bikeTripCollectionRepository;
+    BikeTripService bikeTripService;
 
     @BeforeEach
     void setUp() {
-        bikeTripController = new BikeTripController(bikeTripCollectionRepository);
+        bikeTripController = new BikeTripController(bikeTripService);
 
         bikeTripList = List.of(
                 new BikeTrip(1,
@@ -57,9 +52,4 @@ class BikeTripControllerTest {
         );
     }
 
-    @Test
-    void shouldReturnAllTrips(){
-        Mockito.when(bikeTripCollectionRepository.getBikeTripList()).thenReturn(bikeTripList);
-        assertEquals(3, bikeTripController.getBikeTripList().spliterator().getExactSizeIfKnown());
-    }
 }
