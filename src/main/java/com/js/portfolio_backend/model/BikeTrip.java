@@ -30,17 +30,26 @@ public class BikeTrip {
     @Column(name = "distanceInMeters")
     private Integer distanceInMeters;
 
+    @Column(name = "distanceInKm")
+    private Double distanceInKm;
+
     @Column(name = "durationInSec")
     private Integer durationInSec;
 
-    public BikeTrip(Integer tripId, LocalDateTime departureTime, LocalDateTime returnTime, Integer deptStationId, Integer retStationId, Integer distanceInMeters, Integer durationInSec) {
+    @Column(name = "durationInMin")
+    private Integer durationInMin;
+
+    public BikeTrip(Integer tripId, LocalDateTime departureTime, LocalDateTime returnTime, Integer deptStationId,
+                    Integer retStationId, Integer distanceInMeters, Double distanceInKm, Integer durationInSec, Integer durationInMin) {
         this.tripId = tripId;
         this.departureTime = departureTime;
         this.returnTime = returnTime;
         this.deptStationId = deptStationId;
         this.retStationId = retStationId;
         this.distanceInMeters = distanceInMeters;
+        this.distanceInKm = distanceInKm;
         this.durationInSec = durationInSec;
+        this.durationInMin = durationInMin;
     }
 
     public BikeTrip() {
@@ -101,5 +110,21 @@ public class BikeTrip {
 
     public void setDurationInSec(Integer durationInSec) {
         this.durationInSec = durationInSec;
+    }
+
+    public Double getDistanceInKm() {
+        return distanceInKm;
+    }
+
+    public void setDistanceInKm(Double distanceInKm) {
+        this.distanceInKm = distanceInKm;
+    }
+
+    public Integer getDurationInMin() {
+        return durationInMin;
+    }
+
+    public void setDurationInMin(Integer durationInMinutes) {
+        this.durationInMin = durationInMinutes;
     }
 }

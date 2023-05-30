@@ -15,7 +15,7 @@ public interface BikeTripRepository extends JpaRepository<BikeTrip, Integer> {
 
 
     //IMPORTANT! When calling this "searchWithDate", the keyword should be passed in as "%"+keyword+"%"
-    @Query("SELECT new com.js.portfolio_backend.datatransferobject.BikeTripDto(b.departureTime, b.returnTime ,bs1.stationName as departureStation, bs2.stationName as returnStation, b.distanceInMeters, b.durationInSec) " +
+    @Query("SELECT new com.js.portfolio_backend.datatransferobject.BikeTripDto(b.departureTime, b.returnTime ,bs1.stationName as departureStation, bs2.stationName as returnStation, b.distanceInMeters, b.distanceInKm, b.durationInSec, b.durationInMin) " +
             "FROM BikeTrip b " +
             "INNER JOIN BikeStation bs1 " +
             "ON b.deptStationId = bs1.id " +

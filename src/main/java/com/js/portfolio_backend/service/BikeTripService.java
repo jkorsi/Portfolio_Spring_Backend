@@ -20,7 +20,6 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class BikeTripService {
@@ -63,7 +62,10 @@ public class BikeTripService {
                 Return station id,
                 Return station name, --> Skip, will join to bike_station table with ID
                 Covered distance (m), --> Needs to be over 10m
-                Duration (sec.) --> Needs to be over 10s */
+                Distance (km) double, in 2 decimals
+                Duration (sec.) --> Needs to be over 10s
+                Duration (min)
+                */
 
             LocalDateTime departureTime = LocalDateTime.parse(record.get("Departure"));
             if (departureTime == null) {
@@ -101,15 +103,20 @@ public class BikeTripService {
                 continue;
             }
 
+            Double distInKm = Double.valueOf(coveredDistance)/ 1000.0;
+            Double kmInTwoDecimals = Math.round(distInKm * 100.0) / 100.0;
+
+            System.out.println("Kilometers: " + distInKm);
             // Create an instance of YourEntity and set the values
             BikeTrip trip = new BikeTrip();
             trip.setDepartureTime(departureTime);
             trip.setDeptStationId(departureId);
             trip.setReturnTime(returnTime);
             trip.setRetStationId(returnId);
-            trip.setDistanceInMeters(coveredDistance);
+            trip.setDistanceInMeters(coveredDistance);;
+            trip.setDistanceInKm(kmInTwoDecimals);
             trip.setDurationInSec(timeInSeconds);
-
+            trip.setDurationInMin(Math.floorDiv(timeInSeconds, 60));
 
             // Save the entity to the database
             tripRepository.save(trip);

@@ -30,7 +30,9 @@ class BikeTripControllerTest {
                         94,
                         100,
                         2043,
-                        500
+                        2043.0*100.0 / 1000.0,
+                        500,
+                        (Math.floorDiv(500, 60))
                 ),
                 new BikeTrip(2,
                         LocalDateTime.of(2021, 5, 31, 23, 56, 59),
@@ -38,7 +40,9 @@ class BikeTripControllerTest {
                         82,
                         113,
                         1870,
-                        611
+                        1870.0*100.0 / 1000.0,
+                        611,
+                        (Math.floorDiv(611, 60))
                 ),
                 new BikeTrip(3,
                         LocalDateTime.of(2021, 5, 31, 23, 56, 44),
@@ -46,7 +50,9 @@ class BikeTripControllerTest {
                         132,
                         121,
                         1025,
-                        399
+                        1025*100.0 / 1000.0,
+                        399,
+                        (Math.floorDiv(399, 60))
                 )
 
         );

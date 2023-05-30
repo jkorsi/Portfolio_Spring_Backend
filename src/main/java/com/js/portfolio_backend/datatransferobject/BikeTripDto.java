@@ -8,40 +8,25 @@ public class BikeTripDto {
     private String departureStation;
     private String returnStation;
     private Integer distanceInMeters;
+
+    private Double distanceInKm;
     private Integer durationInSec;
 
-    private Integer distanceInKm;
-    private Integer durationInMinutes;
+    private Integer durationInMin;
 
     public BikeTripDto(LocalDateTime departureTime, LocalDateTime returnTime, String departureStation,
-                       String returnStation, Integer distanceInMeters, Integer durationInSec) {
+                       String returnStation, Integer distanceInMeters, Double distanceInKm,  Integer durationInSec, Integer durationInMin) {
         this.departureTime = departureTime;
         this.returnTime = returnTime;
         this.departureStation = departureStation;
         this.returnStation = returnStation;
         this.distanceInMeters = distanceInMeters;
-        this.distanceInKm = distanceInMeters / 1000;
+        this.distanceInKm = distanceInKm;
         this.durationInSec = durationInSec;
-        this.durationInMinutes = durationInSec / 60;
+        this.durationInMin = durationInMin;
     }
 
     public BikeTripDto() {
-    }
-
-    public double getDistanceInKm() {
-        return distanceInMeters / 1000.0;
-    }
-
-    public double getDurationInMinutes() {
-        return durationInSec / 60.0;
-    }
-
-    public void setDistanceInKm(Integer distanceInKm) {
-        this.distanceInKm = distanceInKm;
-    }
-
-    public void setDurationInMinutes(Integer durationInMinutes) {
-        this.durationInMinutes = durationInMinutes;
     }
 
     public LocalDateTime getDepartureTime() {
@@ -90,5 +75,20 @@ public class BikeTripDto {
 
     public void setDurationInSec(Integer durationInSec) {
         this.durationInSec = durationInSec;
+    }
+    public Double getDistanceInKm() {
+        return distanceInKm;
+    }
+
+    public void setDistanceInKm(Double distanceInKm) {
+        this.distanceInKm = distanceInKm;
+    }
+
+    public Integer getDurationInMin() {
+        return durationInMin;
+    }
+
+    public void setDurationInMin(Integer durationInMin) {
+        this.durationInMin = durationInMin;
     }
 }
