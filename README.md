@@ -53,12 +53,15 @@ DB_PASSWORD= database password
 - CRUD and application data transfer operations are done using model classes
 
 ## Model classes
+- Provide mapping between DB schema and object-oriented representation
+- Are directly converted to database tables and columns, and can be used to define indexes etc.
+
+## Data Transfer Objects, DTOs
 - Represent the data objects throughout the different Spring layers
 - Are containers for data transfer
-- Provide mapping between DB schema and object-oriented representation
 
 # Things still missing
-- [] Faster search queries for bike trip table
-- [] DB calls for getting the statistics / data related to single stations
-- [] Meaningful tests
+- [ ] Faster search queries for bike trip table
+- [ ] DB calls for getting the statistics / data related to single stations
+- [ ] Meaningful tests
 
