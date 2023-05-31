@@ -54,7 +54,7 @@ DB_PASSWORD= database password
 - Provide mapping between DB schema and object-oriented representation
 
 # Things still missing
-[] Faster search queries for bike trip table
-[] DB calls for getting the statistics / data related to single stations
-[] Meaningful tests
+- [] Faster search queries for bike trip table
+- [] DB calls for getting the statistics / data related to single stations
+- [] Meaningful tests
 
