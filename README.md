@@ -11,7 +11,7 @@ Backend for Portfolio, created using Java Spring Boot, with Web template.
 ### Prerequisites
 
 * Java 17 Eclipse
-* PostgreSQL (Developed & tested only with version PostgreSQL 15.3)
+* PostgreSQL (Developed & tested only with PostgreSQL 15.3)
 
 ### Setting up
 
