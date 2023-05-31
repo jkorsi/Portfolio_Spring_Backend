@@ -26,7 +26,11 @@ DB_PASSWORD= database password
 * The project will create necessary tables, columns and indexes based on the models/entities defined in the project "Modules" package when it's run first time.
 * The Tomcat Web Server will open at http://localhost:8080
 
-## The component architechture is structured so that the application consists of
+
+
+# About the architecture
+
+## The project is structured so that the application consists of
 - Controllers
 - Services
 - Repositories
