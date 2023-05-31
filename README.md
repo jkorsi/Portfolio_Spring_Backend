@@ -63,5 +63,5 @@ DB_PASSWORD= database password
 # Things still missing
 - [ ] Faster search queries for bike trip table
 - [ ] DB calls for getting the statistics / data related to single stations
-- [ ] Meaningful tests
+- [ ] More meaningful tests
 
