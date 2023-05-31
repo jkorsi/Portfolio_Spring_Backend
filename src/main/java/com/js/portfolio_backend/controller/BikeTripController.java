@@ -51,16 +51,15 @@ public class BikeTripController {
         LocalDateTime formattedMaxDAte = LocalDateTime.parse(maxDate);
 
         Sort sort = Sort.by(direction, orderBy);
-        Page<BikeTripDto> bikeTripPage = tripService.searchWithTime(keyword, formattedMinDate, formattedMaxDAte, sort, pageable);
 
-        return bikeTripPage;
+        return tripService.searchWithTime(keyword, formattedMinDate, formattedMaxDAte, sort, pageable);
     }
 
     @PostMapping("/upload")
     @CrossOrigin(origins = "http://localhost:5173")
     public ResponseEntity<String> uploadCSVFile(@RequestParam("file") MultipartFile file) {
         try {
-            tripService.importStationCSV(file);
+            tripService.importBikeTripCSV(file);
             return ResponseEntity.ok("CSV file processed successfully.");
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error processing CSV file.");

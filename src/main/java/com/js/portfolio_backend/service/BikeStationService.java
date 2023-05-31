@@ -19,6 +19,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Service
@@ -46,14 +47,12 @@ public class BikeStationService {
 
     public void importStationCSV(MultipartFile file) throws IOException {
 
-        Reader reader = new BufferedReader(new InputStreamReader(new BOMInputStream(file.getInputStream()), "UTF-8"));
+        Reader reader = new BufferedReader(new InputStreamReader(new BOMInputStream(file.getInputStream()), StandardCharsets.UTF_8));
         CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withFirstRecordAsHeader());
 
         List<CSVRecord> records = csvParser.getRecords();
 
-        for(int i = 0; i < records.size(); i++){
-            CSVRecord record = records.get(i);
-
+        for (CSVRecord record : records) {
             record.get("ID");
 
             Integer fid = Integer.parseInt(record.get("FID"));
@@ -67,7 +66,7 @@ public class BikeStationService {
 
             //TODO: validate
             // Create an instance of YourEntity and set the values
-            if(fid >= 0 && id >= 0) {
+            if (fid >= 0 && id >= 0) {
                 BikeStation station = new BikeStation();
 
                 station.setFid(fid);

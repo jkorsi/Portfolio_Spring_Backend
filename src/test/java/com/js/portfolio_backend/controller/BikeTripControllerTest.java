@@ -24,7 +24,7 @@ class BikeTripControllerTest {
         bikeTripController = new BikeTripController(bikeTripService);
 
         bikeTripList = List.of(
-                new BikeTrip(1,
+                new BikeTrip(
                         LocalDateTime.of(2021, 5, 31, 23, 57, 25),
                         LocalDateTime.of(2021, 6, 1, 0, 5, 46),
                         94,
@@ -34,7 +34,7 @@ class BikeTripControllerTest {
                         500,
                         (Math.floorDiv(500, 60))
                 ),
-                new BikeTrip(2,
+                new BikeTrip(
                         LocalDateTime.of(2021, 5, 31, 23, 56, 59),
                         LocalDateTime.of(2021, 6, 1, 0, 7, 14),
                         82,
@@ -44,7 +44,7 @@ class BikeTripControllerTest {
                         611,
                         (Math.floorDiv(611, 60))
                 ),
-                new BikeTrip(3,
+                new BikeTrip(
                         LocalDateTime.of(2021, 5, 31, 23, 56, 44),
                         LocalDateTime.of(2021, 6, 1, 0, 3, 26),
                         132,

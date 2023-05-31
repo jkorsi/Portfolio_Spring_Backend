@@ -1,6 +1,5 @@
 package com.js.portfolio_backend.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.js.portfolio_backend.model.BikeStation;
 import com.js.portfolio_backend.service.BikeStationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +21,11 @@ import java.io.IOException;
 @RestController
 @RequestMapping("api/stations")
 public class BikeStationController {
-    private ObjectMapper objectMapper;
     private BikeStationService bikeStationService;
 
     @Autowired
-    public void BikeStationController(BikeStationService bikeStationService, ObjectMapper objectMapper) {
+    public BikeStationController(BikeStationService bikeStationService) {
         this.bikeStationService = bikeStationService;
-        this.objectMapper = objectMapper;
     }
 
     @GetMapping("/")
@@ -44,9 +41,8 @@ public class BikeStationController {
         }
 
         Sort sort = Sort.by(direction, orderBy);
-        Page<BikeStation> bikeStationPage = bikeStationService.getAll(sort, pageable);
 
-        return bikeStationPage;
+        return bikeStationService.getAll(sort, pageable);
     }
 
     @GetMapping("/search")
@@ -62,9 +58,8 @@ public class BikeStationController {
         }
 
         Sort sort = Sort.by(direction, orderBy);
-        Page<BikeStation> bikeStationPage = bikeStationService.search(keyword, sort, pageable);
 
-        return bikeStationPage;
+        return bikeStationService.search(keyword, sort, pageable);
     }
 
     @PostMapping("/upload")

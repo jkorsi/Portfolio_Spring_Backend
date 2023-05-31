@@ -7,7 +7,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import com.js.portfolio_backend.datatransferobject.BikeTripDto;
 
 import java.time.LocalDateTime;
 
@@ -27,14 +26,5 @@ public interface BikeTripRepository extends JpaRepository<BikeTrip, Integer> {
             "OR lower(bs2.stationCity) LIKE :keyword) " +
             "AND b.departureTime BETWEEN :minDate AND :maxDate")
     Page<BikeTripDto> searchWithDate(@Param("keyword") String keyword, @Param("minDate") LocalDateTime minDate, @Param("maxDate") LocalDateTime maxDate, Pageable pageable);
-
-    //Search with only string columns
-    @Query("SELECT b FROM BikeTrip b " +
-            "INNER JOIN BikeStation bs " +
-            "ON b.deptStationId = bs.id OR b.retStationId = bs.id " +
-            "WHERE bs.stationCity LIKE %:keyword% OR " +
-            "bs.stationName LIKE %:keyword% ")
-    Page<BikeTrip> search(
-            @Param("keyword") String keyword, Pageable pageable);
 
 }

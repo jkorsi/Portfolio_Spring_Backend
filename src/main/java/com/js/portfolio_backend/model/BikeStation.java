@@ -5,7 +5,10 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "bike_stations", indexes = {
         @Index(name = "idx_bikestation_stationname", columnList = "name"),
-        @Index(name = "idx_bikestation_id", columnList = "id")
+        @Index(name = "idx_bikestation_id", columnList = "id"),
+        @Index(name = "idx_bikestation_stationaddress", columnList = "address"),
+        @Index(name = "idx_bikestation_stationcity", columnList = "city"),
+        @Index(name = "idx_bikestation_id_name", columnList = "id,name")
 })
 @IdClass(BikeStationCompositeId.class)
 public class BikeStation {
